@@ -51,12 +51,41 @@ void Snake::growBack() {
     body_.push_back(SnakeCell(new_x, new_y, growing_direction));
 }
 
+bool Snake::isBackwardsDirection(Direction new_direction) {
+    switch (body_.front().getFacingDirection())
+    {
+    case Direction::West:
+        if(new_direction == Direction::East)
+            return true;
+        else
+            return false;
+    case Direction::East:
+        if(new_direction == Direction::West)
+            return true;
+        else
+            return false;
+    case Direction::North:
+        if(new_direction == Direction::South)
+            return true;
+        else
+            return false;
+    case Direction::South:
+        if(new_direction == Direction::North)
+            return true;
+        else
+            return false;
+    default:
+        std::cout << "unexpected direction value in isBackwardsDirection()";
+        exit(EXIT_FAILURE);
+    }
+}
+
 void Snake::move(Direction direction) {
     assert(!body_.empty()); // error handling
 
     int new_x = body_.front().getX(), new_y = body_.front().getY();
 
-    if(direction == Direction::None) { // then the snake moves the same way as before
+    if(direction == Direction::None || isBackwardsDirection(direction)) { // then the snake moves the same way as before
         direction = body_.front().getFacingDirection();
     }
     switch (direction) {

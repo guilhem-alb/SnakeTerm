@@ -24,12 +24,14 @@ private:
         int getY();
     private:
         Direction facing_direction_; // To know where to grow the snake
+        
         int coord_x_;
         int coord_y_;
     }; // class SnakeCell
     std::deque<SnakeCell> body_;
 
     SnakeCell getHead();
+    bool isBackwardsDirection(Direction new_direction); // to avoid having the snake backtrack onto itself
 };
 
 #endif // SNAKE_H

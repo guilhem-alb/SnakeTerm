@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <unistd.h>
+#include <termios.h>
 
 // convert input to key
 Direction SnakeGame::mapKey(char input[], int input_size) {
@@ -77,10 +78,9 @@ void SnakeGame::resolveColision(CellType board_cell_type) {
 void SnakeGame::updateGame() {
     // get player input
     char buf[3];
-    int buf_size = read(STDIN_FILENO, buf, sizeof(buf));
-    std::cout << "\n" << buf << "\n";
+    int buf_size = read(STDIN_FILENO, buf, 3);
     Direction input_direction = mapKey(buf, buf_size);
-    
+    tcflush(STDIN_FILENO, TCIFLUSH); // flush buffer to avoid setting movement for subsequent frames
     // remove tail
     std::array<int, 2> snake_tail_pos = player_snake_.getTailPos();
     game_board_.setCell(snake_tail_pos.at(0), snake_tail_pos.at(1), CellType::Path);

@@ -13,7 +13,7 @@ Direction SnakeGame::mapKey(char input[], int input_size) {
         return Direction::None;
     }
     else {
-        switch (input[3])
+        switch (input[2])
         {
         case 'A':
             return Direction::North;
@@ -60,9 +60,7 @@ void SnakeGame::resolveColision(CellType board_cell_type) {
         player_snake_.growBack();
         // update board
         std::array<int, 2> snake_tail_pos = player_snake_.getTailPos();
-        std::array<int, 2> snake_head_pos = player_snake_.getHeadPos();
         game_board_.setCell(snake_tail_pos.at(0), snake_tail_pos.at(1), CellType::Snake);
-        game_board_.setCell(snake_head_pos.at(0), snake_head_pos.at(1), CellType::Snake);
         game_board_.generateFood();
         incrementScore();
         break;
@@ -71,8 +69,7 @@ void SnakeGame::resolveColision(CellType board_cell_type) {
     case CellType::Wall:
         endGame();
     default:
-        std::array<int, 2> snake_head_pos = player_snake_.getHeadPos();
-        game_board_.setCell(snake_head_pos.at(0), snake_head_pos.at(1), CellType::Snake);
+    // do nothing
         break;
     }
 }
@@ -84,11 +81,15 @@ void SnakeGame::updateGame() {
     std::cout << "\n" << buf << "\n";
     Direction input_direction = mapKey(buf, buf_size);
     
-    // update snake
-    player_snake_.move(input_direction);
+    // remove tail
+    std::array<int, 2> snake_tail_pos = player_snake_.getTailPos();
+    game_board_.setCell(snake_tail_pos.at(0), snake_tail_pos.at(1), CellType::Path);
+    player_snake_.move(input_direction); // change snake
     // check colision
     std::array<int, 2> snake_head_pos = player_snake_.getHeadPos();
     resolveColision(game_board_.getCell(snake_head_pos.at(0), snake_head_pos.at(1)));
+    // add head
+    game_board_.setCell(snake_head_pos.at(0), snake_head_pos.at(1), CellType::Snake);
     setCursor();
     game_board_.print();
 }

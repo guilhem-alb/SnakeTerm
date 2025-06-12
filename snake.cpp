@@ -33,16 +33,16 @@ void Snake::growBack() {
     Direction growing_direction = body_.back().getFacingDirection();
     switch(growing_direction) {
     case Direction::East:
-        new_x--;
-        break;
-    case Direction::West:
-        new_x++;
-        break;
-    case Direction::South:
         new_y--;
         break;
-    case Direction::North:
+    case Direction::West:
         new_y++;
+        break;
+    case Direction::South:
+        new_x--;
+        break;
+    case Direction::North:
+        new_x++;
         break;
     default:
         std::cout << "Unexpected Direction value";
@@ -61,16 +61,16 @@ void Snake::move(Direction direction) {
     }
     switch (direction) {
     case Direction::East:
-        new_x++;
-        break;
-    case Direction::West:
-        new_x--;
-        break;
-    case Direction::South:
         new_y++;
         break;
-    case Direction::North:
+    case Direction::West:
         new_y--;
+        break;
+    case Direction::South:
+        new_x++;
+        break;
+    case Direction::North:
+        new_x--;
         break;
     default:
         std::cout << "Unexpected Direction value";

@@ -57,8 +57,9 @@ void SnakeGame::skipNLines(int n) {
     }
 }
 
+// moves cursor to top left to print the next frame
 void SnakeGame::setCursor() {
-    std::cout << "\x1b[20F" << std::flush; // clears window and moves cursor to top left
+    std::cout << "\x1b[" << game_board_.getHeight() <<"F" << std::flush; 
 }
 
 void SnakeGame::resolveColision(CellType board_cell_type) {

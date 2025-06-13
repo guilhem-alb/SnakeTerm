@@ -22,6 +22,7 @@ private:
     void setCursor();
     void resolveColision(CellType board_cell_type); // execute action based on the encountered cell and updates board
     void incrementScore() {score_++;};
+    void skipNLines(int n); // makes room on the terminal
 };
 
 #endif // SNAKE_GAME_H

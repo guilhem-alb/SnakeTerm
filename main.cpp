@@ -19,7 +19,6 @@ int main() {
     atexit(TerminalSettings::restoreSettings);
 
     SnakeGame game; // init game
-    game.game_board_.print();
 
     // game loop
     while(true) {

@@ -21,11 +21,11 @@ Board::Board() {
 // getters and setters
 
 int Board::getWidth() {
-    return kSizeX;
+    return kSizeY;
 }
 
 int Board::getHeight() {
-    return kSizeY;
+    return kSizeX;
 }
 
 CellType Board::getCell(int x, int y) {

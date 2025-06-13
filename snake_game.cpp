@@ -47,6 +47,14 @@ SnakeGame::SnakeGame()
     game_board_.setCell(snake_head_pos.at(0), snake_head_pos.at(1), CellType::Snake);
 
     game_board_.generateFood();
+
+    skipNLines(game_board_.getHeight()); // position cursor to make room for printing
+}
+
+void SnakeGame::skipNLines(int n) {
+    for(int i = 0; i < n; i++) {
+        std::cout << "\n";
+    }
 }
 
 void SnakeGame::setCursor() {

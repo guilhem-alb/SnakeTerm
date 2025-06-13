@@ -17,7 +17,7 @@ public:
 private:
     // Dimensions
     static constexpr int kSizeX = 20;
-    static constexpr int kSizeY = 50;
+    static constexpr int kSizeY = 30;
     // game board
     CellType grid_[kSizeX][kSizeY] = {{CellType::Path}};
     // methods

@@ -10,6 +10,8 @@ class TerminalSettings {
 public:
     TerminalSettings() {
         if(!initialized_) {
+                
+            std::cout << "\x1b[?25l"; // Hide cursor
             tcgetattr(STDIN_FILENO, &oldt_); // save flags
             termios newt = oldt_;
             newt.c_lflag &= ~(ICANON | ECHO); // flags are : no waiting for enter, no echo, and no waiting for input (in read())
@@ -24,6 +26,7 @@ public:
         restoreSettings();
     }
     static inline void restoreSettings() { // Reloads old settings
+        std::cout << "\x1b[?25h"; // Show cursor
         tcsetattr(STDIN_FILENO, TCSANOW, &oldt_);
         fcntl(STDIN_FILENO, F_SETFL, oldf_);  
 

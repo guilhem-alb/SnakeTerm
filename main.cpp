@@ -1,20 +1,27 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
+#include <csignal>
 
 #include "snake_game.hpp"
 #include "terminal_settings.hpp"
-int main() {
-    const int kTargetFps = 1;
-    const std::chrono::milliseconds kFrameDuration(1000/kTargetFps);
 
+void handleSigint(int sig_num) {
+    TerminalSettings::restoreSettings();
+    exit(128 + SIGINT); // termination code for SIGINT
+}
+
+int main() {
+    const int kTargetFps = 6;
+    const std::chrono::milliseconds kFrameDuration(1000/kTargetFps);
+    std::signal(SIGINT, handleSigint);
     TerminalSettings ts;
     atexit(TerminalSettings::restoreSettings);
+
     SnakeGame game; // init game
-
     game.game_board_.print();
-    // game loop
 
+    // game loop
     while(true) {
         auto frame_start = std::chrono::steady_clock::now();
         game.updateGame();

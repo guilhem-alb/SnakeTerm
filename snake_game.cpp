@@ -50,7 +50,7 @@ SnakeGame::SnakeGame()
 }
 
 void SnakeGame::setCursor() {
-    std::cout << "\x1b[2J\x1b[H"; // clears window and moves cursor to top left
+    std::cout << "\x1b[20F" << std::flush; // clears window and moves cursor to top left
 }
 
 void SnakeGame::resolveColision(CellType board_cell_type) {

@@ -51,8 +51,8 @@ int Board::generateRandomNumInRange(int i, int j) {
 }
 
 std::array<int, 2> Board::generateRandomPos() {
-    std::array<int, 2> pos = {generateRandomNumInRange(0, kSizeX), 
-    generateRandomNumInRange(0, kSizeY)};
+    std::array<int, 2> pos = {generateRandomNumInRange(1, kSizeX - 1), 
+    generateRandomNumInRange(1, kSizeY - 1)}; // skip borders
     return pos;
 }
 
@@ -91,7 +91,7 @@ void Board::print() {
                 break;
             }
             // print character
-            std::cout << "█";
+            std::cout << "██";
         }
         std::cout << '\n';
     }

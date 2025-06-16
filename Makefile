@@ -3,7 +3,7 @@ CXXFLAGS = -Wall
 
 
 
-EXEC = Snake++
+EXEC = SnakeTerm
 
 SRC_DIR = src
 _SRCS = main.cpp snake_game.cpp snake.cpp board.cpp

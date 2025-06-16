@@ -1,4 +1,4 @@
-# Snake++ 
+# SnakeTerm
 A terminal based snake game written in C++.
 
 ## About
@@ -31,8 +31,8 @@ This game only uses standard libraries so no additional downloads should be need
 ### How to compile :
 
 ````bash
-git clone https://
-cd Snake++
+git clone https://github.com/guilhem-alb/SnakeTerm.git
+cd SnakeTerm
 make
 ````
 

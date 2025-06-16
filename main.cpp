@@ -12,7 +12,7 @@ void handleSigint(int sig_num) {
 }
 
 int main() {
-    const int kTargetFps = 6;
+    const int kTargetFps = 8;
     const std::chrono::milliseconds kFrameDuration(1000/kTargetFps);
     std::signal(SIGINT, handleSigint);
     TerminalSettings ts;

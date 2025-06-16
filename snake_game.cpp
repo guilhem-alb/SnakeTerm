@@ -8,7 +8,10 @@
 // convert input to key
 Direction SnakeGame::mapKey(char input[], int input_size) {
     if(input_size != 3) {
-        return Direction::None;
+        if(input[0] == 'q') // key 'q' exits the game
+            endGame();
+        else
+            return Direction::None;
     }
     else if(input[0] != '\x1b' || input[1] !='[') {
         return Direction::None;
